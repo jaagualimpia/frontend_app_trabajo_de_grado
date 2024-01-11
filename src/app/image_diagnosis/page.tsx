@@ -1,7 +1,10 @@
+import NavBar from "../components/navbar/NavBar"
+
 export default function ImageDiagnosis() {
-    return (
-      <h1>
-        Image diagnosis page
-      </h1>
-    )
-  }
+  return (
+    <>
+      <NavBar />
+      <p className="fs-1">Prueba</p>
+    </>
+  )
+}
