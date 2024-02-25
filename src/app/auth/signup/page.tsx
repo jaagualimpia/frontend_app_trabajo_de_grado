@@ -1,12 +1,44 @@
 "use client"
 
+import { authenticateUser, createUser } from "@/services/auth.service";
+import { useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap"
 
 
 export default function SignUp() {
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    email: '',
+    confirmPassword: '',
+  });
+
   const cardStyle = {
     backgroundColor: "#1E1E1E"
   }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    
+    if (formData.password !== formData.confirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+
+    await createUser(formData).then(async (response) => {
+      await authenticateUser({ email: formData.email, password: formData.password }).then((response) => {
+        console.log(response);
+      })
+    });
+  };
 
   return (
     <>
@@ -25,20 +57,25 @@ export default function SignUp() {
 
                   <Row>
                     <Col className="text-start">
-                      <Form>
+                      <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
                           <Form.Label className="text-white">Correo electronico</Form.Label>
-                          <Form.Control type="email" placeholder="Ingresa tu email" />
+                          <Form.Control type="email" onChange={handleInputChange} placeholder="Ingresa tu email" name="email" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                          <Form.Label className="text-white">Contraseña</Form.Label>
-                          <Form.Control type="password" placeholder="Ingresa tu contraseña" />
+                        <Form.Group className="mb-3" controlId="formBasicUsername">
+                          <Form.Label className="text-white">Nombre de usuario</Form.Label>
+                          <Form.Control type="text" onChange={handleInputChange} placeholder="Ingresa tu nombre de usuario" name="username" />
                         </Form.Group>
 
                         <Form.Group className="mb-4" controlId="formBasicPassword">
                           <Form.Label className="text-white">Confirma tu contraseña</Form.Label>
-                          <Form.Control type="password" placeholder="Confirma tu contraseña" />
+                          <Form.Control type="password" onChange={handleInputChange} placeholder="Confirma tu contraseña" name="password" />
+                        </Form.Group>
+
+                        <Form.Group className="mb-4" controlId="formBasicConfirmPassword">
+                          <Form.Label className="text-white">Confirma tu contraseña</Form.Label>
+                          <Form.Control type="password" onChange={handleInputChange} placeholder="Confirma tu contraseña" name="confirmPassword" />
                         </Form.Group>
 
                         <button className="btn btn-success w-100 mt-2"><strong>Crear cuenta</strong></button>
