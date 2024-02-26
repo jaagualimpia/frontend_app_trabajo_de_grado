@@ -2,8 +2,38 @@
 
 import { Col, Container, Form, Row } from "react-bootstrap"
 import NavBar from "../components/navbar/NavBar"
+import { useState } from "react";
+import axios from "axios";
+import { post_diagnosis } from "@/services/diagnosis.service";
 
 export default function ImageDiagnosis() {
+  const [formData, setFormData] = useState({
+    patientName: '',
+    patientAge: '',
+    imageUrl: '',
+  });
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    })
+
+    console.log(formData);
+  };
+
+  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
+    console.log(formData);
+    event.preventDefault();
+    
+    await post_diagnosis(formData).then((response) => {
+      console.log(response);
+    })
+    
+  }
+
+
   return (
     <>
       <NavBar />
@@ -14,13 +44,13 @@ export default function ImageDiagnosis() {
 
         <Row className="mx-5">
           <Container>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Container fluid>
                 <Row>
                   <Col className="col-8">
-                    <Form.Group className="mb-3 text-start w-75" controlId="formBasicEmail">
+                    <Form.Group className="mb-3 text-start w-75" controlId="formBasicPatientName">
                       <Form.Label className="fw-bold">Nombre del paciente</Form.Label>
-                      <Form.Control type="email" placeholder="Ingresa el nombre del paciente" />
+                      <Form.Control type="text" placeholder="Ingresa el nombre del paciente" name="patientAge" onChange={handleInputChange}/>
                     </Form.Group>
                   </Col>
                   <Col className="align-self-center">
@@ -36,7 +66,7 @@ export default function ImageDiagnosis() {
                   <Col className="col-8">
                     <Form.Group className="mb-3 text-start w-75" controlId="formBasicEmail">
                       <Form.Label className="fw-bold">Fecha de nacimiento</Form.Label>
-                      <Form.Control type="date" placeholder="Ingresa el nombre del paciente" />
+                      <Form.Control type="date" placeholder="Ingresa el nombre del paciente" name="patientName" onChange={handleInputChange}/>
                     </Form.Group>
                   </Col>
                   <Col className="align-self-center">
@@ -52,7 +82,7 @@ export default function ImageDiagnosis() {
                   <Col>
                     <Form.Group controlId="formFileLg" className="mb-3">
                       <Form.Label className="fw-bold">Escoge o arrastra la tomografia</Form.Label>
-                      <Form.Control type="file" size="lg" />
+                      <Form.Control type="file" size="lg" name="imageUrl" onChange={handleInputChange}/>
                     </Form.Group>
                   </Col>
                 </Row>

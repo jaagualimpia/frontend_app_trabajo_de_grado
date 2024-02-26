@@ -1,10 +1,11 @@
 import axios from "axios"
 
 
-export const authenticateUser = async ({ email, password }: { [key: string]: any }) => {
+export const authenticateUser = async ({username, email, password }: { [key: string]: any }) => {
     return await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/v1.0/auth/signin`,
         {
+            "username": username,
             "email": email,
             "password": password
         },
