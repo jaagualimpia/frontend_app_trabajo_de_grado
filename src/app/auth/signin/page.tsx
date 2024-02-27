@@ -1,10 +1,41 @@
 "use client"
+import { authenticateUser } from "@/services/auth.service";
 import Link from "next/link"
+import { useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap"
 
 export default function SignIn() {
+  const [formData, setFormData] = useState({
+    password: '',
+    email: '',
+  });
+  
   const cardStyle = {
     backgroundColor: "#1E1E1E"
+  }
+
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
+  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    await authenticateUser(
+      {
+        email: formData.email,
+        password: formData.password 
+      }).then((response) => {
+        
+        console.log(response);
+
+
+    })
+    
   }
 
   return (
@@ -23,15 +54,15 @@ export default function SignIn() {
 
                 <Row>
                   <Col className="text-start">
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                       <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
                         <Form.Label className="text-white fw-bold">Correo electronico</Form.Label>
-                        <Form.Control type="email" placeholder="Ingresa tu email" />
+                        <Form.Control type="email" name="email" placeholder="Ingresa tu email" onChange={handleOnChange}/>
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label className="text-white fw-bold">Contraseña</Form.Label>
-                        <Form.Control type="password" placeholder="Ingresa tu contraseña" />
+                        <Form.Control type="password" name="password" placeholder="Ingresa tu contraseña" onChange={handleOnChange}/>
                       </Form.Group>
 
                       <button className="btn btn-success w-100 mt-2 fw-bold">Ingresar</button>

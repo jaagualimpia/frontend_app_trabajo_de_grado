@@ -36,11 +36,10 @@ export default function SignUp() {
     await createUser(formData).then(async (response) => {
       await authenticateUser(
         {
-          username: formData.username,
           email: formData.email,
           password: formData.password }).then((response) => {
             console.log(response);
-            
+
 
       })
     });
