@@ -1,35 +1,39 @@
 "use client"
 
 import { Col, Container, Row } from "react-bootstrap";
+import { formatDate } from "@/services/dateManagement.service";
+
 
 interface HistoryListItemProps {
-    date: string,
+    date: Date,
     patientName: string,
-    patientAge: number,
-    diagnosis: string
-    isLast: boolean
-
+    patientAge: Date,
+    diagnosis: string,
+    isLast: boolean,
+    OnClick: () => void
 }
 
 
-export default function HistoryListItem({ date, patientName, patientAge, diagnosis, isLast }: HistoryListItemProps) {
+
+export default function HistoryListItem({ date, patientName, patientAge, diagnosis, isLast, OnClick}: HistoryListItemProps) {
+
     return (
         <>
-            <Container fluid className="lh-1">
+            <Container fluid className="lh-1" onClick={OnClick} style={{cursor: "pointer"}}>
                 <Row>
                     <Col>
-                        <p className="fs-3 fw-bold mb-1">Fecha: 17/09/2050</p>
+                        <p className="fs-3 fw-bold mb-1">Fecha: {formatDate(date)}</p>
 
                     </Col>
                 </Row>
                 <Row className="py-0">
                     <Col>
-                        <p className="fs-6 mb-2">Paciente: Anonimo - edad no especificada</p>
+                        <p className="fs-6 mb-2">Paciente: {patientName} - edad no especificada</p>
                     </Col>
                 </Row>
                 <Row className="py-0">
                     <Col className="mb-0">
-                        <p className="fs-6 mb-0">Diagnostico: Se estima presencia de cáncer </p>
+                        <p className="fs-6 mb-0">Diagnostico: {diagnosis}</p>
                     </Col>
                 </Row>
                 {isLast ? <></> : <hr/>}

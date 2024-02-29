@@ -3,6 +3,7 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import NavBar from "./components/navbar/NavBar";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const router = useRouter()

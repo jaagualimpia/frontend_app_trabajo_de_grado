@@ -3,42 +3,116 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import HistoryListItem from "../components/historyListItem.tsx/HistoryListItem";
 import Pagination from 'react-bootstrap/Pagination';
+import { useEffect, useState } from "react";
+import { getDiagnosisHistory } from "@/services/diagnosis.service";
+import { DiagnosisPaginationDto } from "@/dtos/diagnosisPagination.dto";
+import { DiagnosisCardComponent } from "../components/diagnosisCardComponent/diagnosisCardComponent";
 
 
 export default function History() {
-  const cosa = {
-    date: "asfsa",
-    patientName: "asfs",
-    patientAge: 10,
-    diagnosis: true,
-    isLast: true
-  }
+  const [listItem, setListItem] = useState<DiagnosisPaginationDto>({
+    count: 0,
+    next: "",
+    previous: "",
+    results: []
+  })
 
-  const listItem = {
-    date: "25/08/2002",
-    patientName: "Anonimo",
-    patientAge: 11,
-    diagnosis: "Se estima presencia de cancer",
-    isLast: true
-  }
+  const [diagnosisComponent, setDiagnosisComponent] = useState<any>(
+    <DiagnosisCardComponent
+      name={"Jorge Agualimpia"}
+      patient_date_of_birth={"20"}
+      diagnosis_date={"29/01/2023"}
+      id={45114564}
+      diagnosis_result={"Se estima presencia de cancer"} 
+      image_url={""}
+      />
+  )
 
-  return (
-    <>
-      <Container className="my-3 h-100">
-        <Row className="h-100">
-          <Col className="my-1 h-100">
-            <Card className="h-100" style={{ height: "100%" }}>
-              <Card.Body>
-                <HistoryListItem date={listItem.date} patientName={listItem.patientName} patientAge={listItem.patientAge} diagnosis={listItem.diagnosis} isLast={false} />
-                <HistoryListItem date={listItem.date} patientName={listItem.patientName} patientAge={listItem.patientAge} diagnosis={listItem.diagnosis} isLast={false} />
-                <HistoryListItem date={listItem.date} patientName={listItem.patientName} patientAge={listItem.patientAge} diagnosis={listItem.diagnosis} isLast={false} />
-                <HistoryListItem date={listItem.date} patientName={listItem.patientName} patientAge={listItem.patientAge} diagnosis={listItem.diagnosis} isLast={true} />
-              </Card.Body>
-            </Card>
-          </Col>
+  useEffect(() => {
+    const fetchDiagnosisHistory = async () => {
+      await getDiagnosisHistory().then((response) => {
+        setListItem(response)
 
-          <Col className="my-1">
-            <Card className="h-100">
+        let firstItem = response.results[0]
+
+        setDiagnosisComponent(
+          <DiagnosisCardComponent
+            name={firstItem.patientName}
+            patient_date_of_birth={firstItem.patientDateOfBirth}
+            diagnosis_date={firstItem.diagnosisDate}
+            id={firstItem.id}
+            diagnosis_result={"Se estima la presencia de cancer"}
+            image_url={firstItem.imageUrl}
+            />
+        )
+    })
+}
+
+fetchDiagnosisHistory()
+  }, [])
+
+// const cosa = {
+//   date: "asfsa",
+//   patientName: "asfs",
+//   patientAge: 10,
+//   diagnosis: true,
+//   isLast: true
+// }
+
+// const listItem = {
+//   date: "25/08/2002",
+//   patientName: "Anonimo",
+//   patientAge: 11,
+//   diagnosis: "Se estima presencia de cancer",
+//   isLast: true
+// }
+
+const onClickDiagnosisItem = (
+  username: string,
+  diagnosisDate: Date,
+  patientDateOfBirth: Date,
+  id: number,
+  diagnosisResult: string,
+  image_url: string
+) => {
+
+  setDiagnosisComponent(
+    <DiagnosisCardComponent
+      name={username}
+      patient_date_of_birth={patientDateOfBirth}
+      diagnosis_date={diagnosisDate}
+      id={id}
+      diagnosis_result={diagnosisResult}
+      image_url={image_url}
+      />)
+}
+
+let itemsToDisplay = listItem.results.map((item, index) => {
+  return <HistoryListItem key={index}
+    date={item.diagnosisDate}
+    patientName={item.patientName}
+    patientAge={item.patientDateOfBirth}
+    diagnosis={item.diagnosisResult}
+    isLast={index === listItem.results.length - 1}
+    OnClick={() => {onClickDiagnosisItem(item.patientName, item.diagnosisDate, item.patientDateOfBirth, item.id, item.diagnosisResult, item.imageUrl)}}
+  />
+})
+
+
+return (
+  <>
+    <Container className="my-3 h-100">
+      <Row className="h-100">
+        <Col className="my-1 h-100">
+          <Card className="h-100" style={{ height: "100%" }}>
+            <Card.Body>
+              {itemsToDisplay}
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col className="my-1">
+          {/* <Card className="h-100">
               <Card.Body>
                 <Container fluid>
                   <Row style={{ backgroundColor: "#e3e3e3" }} className="mx-0">
@@ -49,32 +123,36 @@ export default function History() {
 
                   <Row className="mt-2">
                     <Col>
-                      <p className="fs-4 fw-bold mb-1 lh-sm">Nombre: {listItem.patientName}</p>
-                      <p className="fs-5 mb-1 lh-sm">Edad: {listItem.patientAge}</p>
+                      <p className="fs-4 fw-bold mb-1 lh-sm">Nombre: {"Jorge Agualimpia"}</p>
+                      <p className="fs-5 mb-1 lh-sm">Edad: 20</p>
                       <p className="fs-5 mb-1 lh-sm">Fecha:  29/01/2023</p>
                       <p className="fs-5 mb-1 lh-sm">Numero de referencia: 45114564</p>
                       <p className="fs-4 fw-bold mb-1 text-center lh-sm">Se estima presencia de cancer</p>
-
                     </Col>
                   </Row>
                 </Container>
               </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Pagination className="justify-content-center">
-              <Pagination.First />
-              <Pagination.Prev />
-              <Pagination.Item>{1}</Pagination.Item>
-              <Pagination.Next />
-              <Pagination.Last />
-            </Pagination>
+            </Card> */}
 
-          </Col>
-        </Row>
-      </Container>
-    </>
-  )
+          {/* <DiagnosisCardComponent name={"Jorge Agualimpia"} patient_date_of_birth={"20"} diagnosis_date={"29/01/2023"} id={45114564} diagnosis_result={"Se estima presencia de cancer"} /> */}
+        
+          {diagnosisComponent }
+
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Pagination className="justify-content-center">
+            <Pagination.First />
+            <Pagination.Prev />
+            <Pagination.Item>{1}</Pagination.Item>
+            <Pagination.Next />
+            <Pagination.Last />
+          </Pagination>
+
+        </Col>
+      </Row>
+    </Container>
+  </>
+)
 }

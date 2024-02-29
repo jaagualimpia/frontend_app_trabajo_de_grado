@@ -6,21 +6,38 @@ import { useState } from "react";
 import axios from "axios";
 import { post_diagnosis } from "@/services/diagnosis.service";
 
+interface imageDiagnosisProps {
+  patientName: string,
+  patientAge: string,
+  imageUrl: any
+
+}
+
 export default function ImageDiagnosis() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<imageDiagnosisProps>({
     patientName: '',
     patientAge: '',
     imageUrl: '',
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    })
+    
+    if(event.target.type === 'file' && event.target.files) {
+      console.log(event.target.files);
+      setFormData({
+        ...formData,
+        ["imageUrl"]: event.target.files[0]
+      })
+    } else {
+      
+      const { name, value } = event.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      })
 
-    console.log(formData);
+      console.log(formData)
+    }
   };
 
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
@@ -50,7 +67,7 @@ export default function ImageDiagnosis() {
                   <Col className="col-8">
                     <Form.Group className="mb-3 text-start w-75" controlId="formBasicPatientName">
                       <Form.Label className="fw-bold">Nombre del paciente</Form.Label>
-                      <Form.Control type="text" placeholder="Ingresa el nombre del paciente" name="patientAge" onChange={handleInputChange}/>
+                      <Form.Control type="text" placeholder="Ingresa el nombre del paciente" name="patientName" onChange={handleInputChange}/>
                     </Form.Group>
                   </Col>
                   <Col className="align-self-center">
@@ -66,7 +83,7 @@ export default function ImageDiagnosis() {
                   <Col className="col-8">
                     <Form.Group className="mb-3 text-start w-75" controlId="formBasicEmail">
                       <Form.Label className="fw-bold">Fecha de nacimiento</Form.Label>
-                      <Form.Control type="date" placeholder="Ingresa el nombre del paciente" name="patientName" onChange={handleInputChange}/>
+                      <Form.Control type="date" placeholder="Ingresa el nombre del paciente" name="patientAge" onChange={handleInputChange}/>
                     </Form.Group>
                   </Col>
                   <Col className="align-self-center">
