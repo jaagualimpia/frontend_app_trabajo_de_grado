@@ -31,8 +31,8 @@ export default function SignIn() {
         password: formData.password 
       }).then((response) => {
         
-        console.log(response);
-
+        const accesToken: string = response.access
+        localStorage.setItem('access_token', accesToken)
 
     })
     

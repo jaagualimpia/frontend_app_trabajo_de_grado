@@ -21,7 +21,6 @@ export const post_diagnosis = async (
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("user_jwt_token")
-        
         }
         })
 
