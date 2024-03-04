@@ -1,15 +1,15 @@
 "use client"
 
-import Head from "next/head";
-import "./authStyle.css";
-
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <Head>
-                <title>Auth</title>
-                <link rel="stylesheet" href="auth.module.css" />
-            </Head>
+            <meta property="og:title" content="Title Here" />
+            <style jsx global>{`
+                body {
+                    background-color: #0F0F0F;
+                    color: white;
+                }
+            `}</style>
             <div>
                 {children}
             </div>

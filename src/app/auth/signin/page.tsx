@@ -1,8 +1,9 @@
 "use client"
+
 import { authenticateUser } from "@/services/auth.service";
 import Link from "next/link"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap"
 
 export default function SignIn() {
@@ -16,6 +17,10 @@ export default function SignIn() {
   const cardStyle = {
     backgroundColor: "#1E1E1E"
   }
+
+  useEffect(() => {
+    document.title = "Sign in"; // Cambia el título de la ventana del navegador
+  }, [])
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;

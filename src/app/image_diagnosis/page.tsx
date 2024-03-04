@@ -2,8 +2,7 @@
 
 import { Col, Container, Form, Row } from "react-bootstrap"
 import NavBar from "../components/navbar/NavBar"
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { post_diagnosis } from "@/services/diagnosis.service";
 
 interface imageDiagnosisProps {
@@ -20,6 +19,10 @@ export default function ImageDiagnosis() {
     imageUrl: '',
   });
 
+  useEffect(() => {
+    document.title = "Diagnostico"; // Cambia el título de la ventana del navegador
+  }, []);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     
     if(event.target.type === 'file' && event.target.files) {
@@ -35,8 +38,6 @@ export default function ImageDiagnosis() {
         ...formData,
         [name]: value,
       })
-
-      console.log(formData)
     }
   };
 
@@ -48,6 +49,36 @@ export default function ImageDiagnosis() {
       console.log(response);
     })
     
+  }
+
+  const handlePatientNameSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      document.getElementById('patientNameControl')?.setAttribute('disabled', String(event.target.checked));
+      
+      setFormData({
+        ...formData,
+        ["patientName"]: "Usuario anonimo",
+      })
+
+      return
+    }
+    
+    document.getElementById('patientNameControl')?.removeAttribute('disabled');
+  }
+
+  const handlePatientAgeSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      document.getElementById('patientAgeControl')?.setAttribute('disabled', String(event.target.checked));
+      
+      setFormData({
+        ...formData,
+        ["patientAge"]: new Date().toISOString().split('T')[0],
+      })
+
+      return
+    }
+    
+    document.getElementById('patientAgeControl')?.removeAttribute('disabled');;
   }
 
 
@@ -65,7 +96,7 @@ export default function ImageDiagnosis() {
               <Container fluid>
                 <Row>
                   <Col className="col-8">
-                    <Form.Group className="mb-3 text-start w-75" controlId="formBasicPatientName">
+                    <Form.Group className="mb-3 text-start w-75" controlId="patientNameControl">
                       <Form.Label className="fw-bold">Nombre del paciente</Form.Label>
                       <Form.Control type="text" placeholder="Ingresa el nombre del paciente" name="patientName" onChange={handleInputChange}/>
                     </Form.Group>
@@ -75,15 +106,16 @@ export default function ImageDiagnosis() {
                       type="switch"
                       id="custom-switch"
                       label="No especificar"
+                      onChange={handlePatientNameSwitch}
                     />
                   </Col>
                 </Row>
 
                 <Row>
                   <Col className="col-8">
-                    <Form.Group className="mb-3 text-start w-75" controlId="formBasicEmail">
+                    <Form.Group className="mb-3 text-start w-75" controlId="patientAgeControl">
                       <Form.Label className="fw-bold">Fecha de nacimiento</Form.Label>
-                      <Form.Control type="date" placeholder="Ingresa el nombre del paciente" name="patientAge" onChange={handleInputChange}/>
+                      <Form.Control type="date" placeholder="Ingrese la fecha de nacimiento del paciente" name="patientAge" onChange={handleInputChange}/>
                     </Form.Group>
                   </Col>
                   <Col className="align-self-center">
@@ -91,6 +123,7 @@ export default function ImageDiagnosis() {
                       type="switch"
                       id="custom-switch"
                       label="No especificar"
+                      onChange={handlePatientAgeSwitch}
                     />
                   </Col>
                 </Row>

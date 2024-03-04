@@ -1,11 +1,13 @@
 "use client"
 
 import { authenticateUser, createUser } from "@/services/auth.service";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap"
 
 
 export default function SignUp() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -16,6 +18,10 @@ export default function SignUp() {
   const cardStyle = {
     backgroundColor: "#1E1E1E"
   }
+
+  useEffect(() => {
+    document.title = "Sign up"; // Cambia el título de la ventana del navegador
+  }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -38,9 +44,9 @@ export default function SignUp() {
         {
           email: formData.email,
           password: formData.password }).then((response) => {
-            console.log(response);
 
-
+            localStorage.setItem('access_token', response.access);
+            router.replace("/")
       })
     });
   };

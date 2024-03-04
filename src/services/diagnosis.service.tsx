@@ -27,9 +27,9 @@ export const post_diagnosis = async (
     return response.data
 }
 
-export const getDiagnosisHistory = async () : Promise<DiagnosisPaginationDto> => {
+export const getDiagnosisHistory = async (page: number) : Promise<DiagnosisPaginationDto> => {
     const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1.0/list_diagnosis/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1.0/list_diagnosis/?page=${page}`,
         {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("access_token")
