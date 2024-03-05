@@ -21,11 +21,6 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
                                     </Row>
                                     <Row className="my-0">
                                         <Col className="text-center">
-                                            <p className="fs-4 fw-medium" style={{ "color": "#6D6D6D" }}>Edad no especificada</p>
-                                        </Col>
-                                    </Row>
-                                    <Row className="my-0">
-                                        <Col className="text-center">
                                             <p className="fs-4 fw-medium" style={{ "color": "#6D6D6D" }}>Edad no especificada / 15 años</p>
                                         </Col>
                                     </Row>
@@ -51,6 +46,13 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
                                                 {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. */}
                                                 El adenocarcinoma generalmente se trata con cirugía para extirpar cualquier tejido glandular canceroso. También se extirpa una parte del tejido circundante. Las técnicas de cirugía mínimamente invasiva pueden reducir el tiempo de curación y minimizar las posibles infecciones.
                                             </p>
+                                        </Col>
+                                    </Row>
+
+                                    <Row className="my-0">
+                                        <Col className="text-center">
+                                            <p className="fs-4 fw-bolder text-black" >
+                                            Se recuerda que la presente herramienta sirve únicamente al profesional de la salud como un apoyo y está impulsado por medio de inteligencia artificial y es propenso a cometer errores. Se recomiendan exámenes más exhaustivos independientemente de los resultados obtenidos                                            </p>
                                         </Col>
                                     </Row>
                                 </Container>
