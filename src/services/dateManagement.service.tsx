@@ -10,7 +10,7 @@ export const formatDate = (date: Date) => {
 export const calculateAge = (birthDate: any) => {
     const today = new Date();
     const birthDateObj = new Date(birthDate);
-    
+
     let age = today.getFullYear() - birthDateObj.getFullYear();
     const monthDiff = today.getMonth() - birthDateObj.getMonth();
 

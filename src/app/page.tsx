@@ -9,8 +9,8 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
-    document.title = "Inicio"; // Cambia el título de la ventana del navegador
-  }, []);
+    document.title = "Inicio"
+  }, [])
 
   return (
     <>
