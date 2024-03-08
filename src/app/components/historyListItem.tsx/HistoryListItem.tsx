@@ -1,7 +1,7 @@
 "use client"
 
 import { Col, Container, Row } from "react-bootstrap";
-import { formatDate } from "@/services/dateManagement.service";
+import { calculateAge, formatDate } from "@/services/dateManagement.service";
 
 
 interface HistoryListItemProps {
@@ -28,7 +28,7 @@ export default function HistoryListItem({ date, patientName, patientAge, diagnos
                 </Row>
                 <Row className="py-0">
                     <Col>
-                        <p className="fs-6 mb-2">Paciente: {patientName} - edad no especificada</p>
+                        <p className="fs-6 mb-2">Paciente: {patientName} - {calculateAge(patientAge)} años</p>
                     </Col>
                 </Row>
                 <Row className="py-0">

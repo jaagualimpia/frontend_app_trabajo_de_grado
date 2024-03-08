@@ -1,3 +1,19 @@
+const monthsInSpanish: any = {
+    0: 'Enero',
+    1: 'Febrero',
+    2: 'Marzo',
+    3: 'Abril',
+    4: 'Mayo',
+    5: 'Junio',
+    6: 'Julio',
+    7: 'Agosto',
+    8: 'Septiembre',
+    9: 'Octubre',
+    10: 'Noviembre',
+    11: 'Diciembre',
+}
+
+
 export const formatDate = (date: Date) => {
     date = new Date(date)
 
@@ -19,4 +35,23 @@ export const calculateAge = (birthDate: any) => {
     }
 
     return age;
+}
+
+export const exactDateFormatter = (date: Date | undefined) => {
+    date = new Date(date!)
+
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const year = date.getUTCFullYear();
+    const hours = date.getHours();
+    let minutes:any = date.getMinutes();
+
+    if (minutes < 10) {
+        minutes = `0${minutes}`
+
+    }
+
+    console.log(date)
+
+    return  `El día ${day} de ${monthsInSpanish[parseInt(month) - 1]} del año ${year} a las ${hours}:${minutes} GMT-0500 (hora estándar de Colombia)`;
 }

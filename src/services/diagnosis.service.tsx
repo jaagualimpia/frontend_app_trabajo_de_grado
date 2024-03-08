@@ -1,3 +1,5 @@
+import { DiagnosisDto } from "@/dtos/diagnosis.dto"
+import { DiagnosisDetailDto } from "@/dtos/diagnosisDetail.dto"
 import { DiagnosisPaginationDto } from "@/dtos/diagnosisPagination.dto"
 import axios from "axios"
 
@@ -37,4 +39,16 @@ export const getDiagnosisHistory = async (page: number) : Promise<DiagnosisPagin
         })
 
     return DiagnosisPaginationDto.create(response.data)
+}
+
+export const getDiagnosisDetail = async (id: number) : Promise<DiagnosisDetailDto> => {
+    const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1.0/diagnosis/${id}`,
+        {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("access_token")
+            }
+        })
+
+    return DiagnosisDetailDto.create(response.data)
 }

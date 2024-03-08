@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import HistoryListItem from "../components/historyListItem.tsx/HistoryListItem";
 import Pagination from 'react-bootstrap/Pagination';
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import { useSearchParams } from "next/navigation";
 export default function History() {
   const searchParams = useSearchParams()
   const page = parseInt(searchParams.get("page")!) || 1
+  const [selectedId, setSelectedId] = useState<number | null>(null)
 
   const [listItem, setListItem] = useState<DiagnosisPaginationDto>({
     count: 0,
@@ -22,12 +23,12 @@ export default function History() {
 
   const [diagnosisComponent, setDiagnosisComponent] = useState<any>(
     <DiagnosisCardComponent
-      name={"Jorge Agualimpia"}
-      patient_date_of_birth={"20"}
-      diagnosis_date={"29/01/2023"}
+      name={null}
+      patient_date_of_birth={null}
+      diagnosis_date={null}
       id={45114564}
-      diagnosis_result={"Se estima presencia de cancer"} 
-      image_url={""}
+      diagnosis_result={null} 
+      image_url={null}
       />
   )
 
@@ -46,10 +47,12 @@ export default function History() {
             patient_date_of_birth={firstItem.patientDateOfBirth}
             diagnosis_date={firstItem.diagnosisDate}
             id={firstItem.id}
-            diagnosis_result={"Se estima la presencia de cancer"}
+            diagnosis_result={firstItem.diagnosisResult}
             image_url={firstItem.imageUrl}
             />
         )
+
+        setSelectedId(firstItem.id)
     })
 }
 
@@ -65,6 +68,7 @@ const onClickDiagnosisItem = (
   image_url: string
 ) => {
 
+  setSelectedId(id)
   setDiagnosisComponent(
     <DiagnosisCardComponent
       name={username}
@@ -102,6 +106,11 @@ return (
 
         <Col className="my-1">
           {diagnosisComponent }
+        </Col>
+      </Row>
+      <Row className="my-3">
+        <Col className="text-center">
+            <Button className="fw-bold" variant="success" href={`/results/${selectedId}`}>Conocer detalles del resultado</Button>
         </Col>
       </Row>
       <Row>

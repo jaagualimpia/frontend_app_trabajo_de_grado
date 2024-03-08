@@ -4,6 +4,7 @@ import { Col, Container, Form, Row } from "react-bootstrap"
 import NavBar from "../components/navbar/NavBar"
 import { useEffect, useState } from "react";
 import { post_diagnosis } from "@/services/diagnosis.service";
+import { useRouter } from "next/navigation";
 
 interface imageDiagnosisProps {
   patientName: string,
@@ -18,6 +19,7 @@ export default function ImageDiagnosis() {
     patientAge: '',
     imageUrl: '',
   });
+  const router = useRouter();
 
   useEffect(() => {
     document.title = "Diagnostico"; // Cambia el título de la ventana del navegador
@@ -46,7 +48,7 @@ export default function ImageDiagnosis() {
     event.preventDefault();
     
     await post_diagnosis(formData).then((response) => {
-      console.log(response);
+      router.push('/results/' + response.id);
     })
     
   }
