@@ -1,6 +1,5 @@
 "use client"
 
-import { DiagnosisDto } from "@/dtos/diagnosis.dto"
 import { DiagnosisDetailDto } from "@/dtos/diagnosisDetail.dto"
 import { calculateAge, exactDateFormatter } from "@/services/dateManagement.service"
 import { getDiagnosisDetail } from "@/services/diagnosis.service"
