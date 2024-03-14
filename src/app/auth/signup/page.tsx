@@ -62,7 +62,7 @@ export default function SignUp() {
                 <Container fluid>
                   <Row className="text-center">
                     <Col>
-                      <p className="text-white h1">Crea una cuenta en the brand</p>
+                      <p className="text-white h1">Crea una cuenta en SupportCCT</p>
                     </Col>
                   </Row>
 

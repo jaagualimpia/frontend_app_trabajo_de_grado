@@ -55,7 +55,7 @@ export default function SignIn() {
               <Container fluid>
                 <Row className="text-center">
                   <Col>
-                    <p className="text-white fs-1 fw-bolder">Iniciar sesión en Brand</p>
+                    <p className="text-white fs-1 fw-bolder">Iniciar sesión en SupportCCT</p>
                   </Col>
                 </Row>
 

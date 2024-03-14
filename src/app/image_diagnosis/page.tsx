@@ -22,7 +22,7 @@ export default function ImageDiagnosis() {
   const router = useRouter();
 
   useEffect(() => {
-    document.title = "Diagnostico"; // Cambia el título de la ventana del navegador
+    document.title = "Diagnostico";
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +87,10 @@ export default function ImageDiagnosis() {
   return (
     <>
       <NavBar />
+
+      {
+
+      }
       <Container fluid className="mt-2">
         <Row className="text-center">
           <p className="fs-2 fw-bold">Ingresa los datos</p>

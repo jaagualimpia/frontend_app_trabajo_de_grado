@@ -10,7 +10,7 @@ const preparedMessages: {[key: string]: string} = {
     "normal": "El paciente no parece presentar ninguna anomalía en los pulmones, pese a lo dicho se recomienda encarecidamente realizar exámenes más exhaustivos para descartar cualquier posibilidad de enfermedad.",
     "large cell carcinoma": "El carcinoma de celulas grande es un tumor maligno dificil de combatir, sin embargo la medicina moderna ha encontrado formas de hacerle frente de manera parcialmente efectiva. Los tratamientos más comunes con la quimioterapia y la cirugía que busque extirpar el tumor y en algunos casos incluso todo el pulmon afectado.",
     "adenocarcinoma": "El adenocarcinoma pulmonar es una enfermedad que comunmente se suele tratar con cirugía, esto hasta la etapa IIIA, posterior a esta etapa las opciones de tratamiento se reducen a la quimioterapia y la radioterapia. Es un cáncer que posee una alta probabilidad de recaída y exige una atención inmediata para aumentar la efectividad del tratamiento. Es el tipo de cáncer de púlmon más comun que existe",
-    "squamous cell carcinoma": "Se estima la presencia de carcinoma de células escamosas"
+    "squamous cell carcinoma": "Es un tipo de cáncer de pulmón no microcítico, cuyas células se asemejan a las células planas (llamadas células escamosas) que revisten las vías respiratorias, sin tratar puede destruir el tejido sano cercano. Puede extenderse a los ganglios linfáticos o a otros órganos y puede ser mortal, aunque no es frecuente."
 }
 
 const preparedMessagesTitles: {[key: string]: string} = {
@@ -78,8 +78,6 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
                                         </Col>
                                         <Col className="col-8">
                                             <p className="fs-5 fw-medium">
-                                                {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. */}
-                                                {/* El adenocarcinoma generalmente se trata con cirugía para extirpar cualquier tejido glandular canceroso. También se extirpa una parte del tejido circundante. Las técnicas de cirugía mínimamente invasiva pueden reducir el tiempo de curación y minimizar las posibles infecciones. */}
                                                 {message}
                                             </p>
                                         </Col>

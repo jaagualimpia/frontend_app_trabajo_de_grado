@@ -23,7 +23,7 @@ export default function Home() {
                 <Container>
                   <Row className="mb-3">
                     <Col>
-                      <h1 className="text-center fs-1 fw-bold">Brand name</h1>
+                      <h1 className="text-center fs-1 fw-bold">SupportCCT</h1>
                     </Col>
                   </Row>
 
