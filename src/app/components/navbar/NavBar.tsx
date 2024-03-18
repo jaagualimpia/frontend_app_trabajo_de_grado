@@ -6,7 +6,7 @@ import {Nav, Navbar } from "react-bootstrap";
 export default function NavBar() {
     return (
         <Navbar style={{backgroundColor: "#0F0F0F", }} expand="lg" className='py-3'>
-            <Navbar.Brand href="/" className='ms-2 text-white'><strong>Brand</strong></Navbar.Brand>
+            <Navbar.Brand href="/" className='ms-2 text-white'><strong>SupportCCT</strong></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" style={{background: "white"}}/>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
