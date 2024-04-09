@@ -40,18 +40,20 @@ export default function Home() {
                   </Row>
 
                   <Row className="text-center mx-3">
-                    <Col style={{ cursor: "pointer" }} onClick={() => router.push("https://github.com/jaagualimpia/frontend_app_trabajo_de_grado")}>
+                    <Col style={{ cursor: "pointer" }} onClick={() => router.push("https://github.com/jaagualimpia/frontend_app_trabajo_de_grado/tree/joragucai")}>
                       <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="github image" style={{ height: "100px" }} />
                       <p className="fw-bold fs-5">Repositorio frontend app</p>
                     </Col>
 
                     <Col style={{ cursor: "pointer" }}>
-                      <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="github image" style={{ height: "100px" }} />
+                      <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="github image" style={{ height: "100px" }} onClick={() => router.push("https://github.com/jaagualimpia/backend_app_trabajo_de_grado/tree/joragucai")}/>
                       <p className="fw-bold fs-5">Repositorio backend app</p>
                     </Col>
 
                     <Col style={{ cursor: "pointer" }}>
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Google_Colaboratory_SVG_Logo.svg/2560px-Google_Colaboratory_SVG_Logo.svg.png" alt="github image" style={{ height: "100px" }} />
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Google_Colaboratory_SVG_Logo.svg/2560px-Google_Colaboratory_SVG_Logo.svg.png" alt="github image" style={{ height: "100px" }}
+                           onClick={() => router.push("https://www.kaggle.com/code/jorgeagualimpia/notebook-del-trabajo-de-grado-final ")}
+                      />
                       <p className="fw-bold fs-5">Jupyter notebook del modelo de IA</p>
                     </Col>
                   </Row>
