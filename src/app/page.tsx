@@ -54,7 +54,7 @@ export default function Home() {
                         </Container>
                       </ul>
                       <p className="lh-md">
-                        El modelo fue entrenado  
+                        El modelo fue entrenado haciendo uso de redes neuronales convolucionales y utilizando varias tecnicas de preprocesamiento
                       </p>
                     </Col>
                   </Row>
