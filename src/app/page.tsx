@@ -30,10 +30,10 @@ export default function Home() {
 
                   <Row className="mx-3">
                     <Col>
-                      <p className="lh-md">Este es un trabajo realizado por estudiantes de la universidad San Buenaventura de Cali. <br />
-                        En la herramienta desarrollado se construyo un sistema de inteligencia artificial que permite clasificar distintos tipos de cancer de púlmon junto con pulmones sanos. Las clases que se clasifica son:
+                      <p className="text-justify" style={{textAlign: "justify"}}>En la herramienta desarrollada se construyo un sistema de inteligencia artificial que permite clasificar distintos tipos de cancer de púlmon junto con pulmones sanos
+                       todo esto a partir de imagenes de tomografias computarizadas de pecho. Las clases que puede clasificar el modelo son:
                       </p>
-                      <ul>
+                      <ul style={{listStyleType: "none"}}>
                         <Container>
                           <Row>
                             <Col>
@@ -53,8 +53,51 @@ export default function Home() {
                           </Row>
                         </Container>
                       </ul>
-                      <p className="lh-md">
-                        El modelo fue entrenado haciendo uso de redes neuronales convolucionales y utilizando varias tecnicas de preprocesamiento
+                      <p className="text-justify" style={{textAlign: "justify"}} >
+                        El modelo fue entrenado haciendo uso de redes neuronales convolucionales, se utilizaron varias tecnicas de preprocesamiento como: Escalado a grises, normalización de pixeles y estandarización de tamaño de imagen. Además de esto también se aplicaron tecnicas de aumentado de datos para generar más elementos con los cuales entrenar la inteligencia artificial.
+                      </p>
+                      <p className="fw-bold fs-3 text-center">
+                        Selección del modelo
+                      </p>
+                      <p className="text-justify" style={{textAlign: "justify"}}>
+                        Para la selección del modelo se dividio la información en tres subconjuntos. Un subconjunto de entrenamiento que conformaba aproximadamente el 70% de toda
+                        la información, un subconjunto conformado a partir del de entrenamiento denominado subconjunto de validación que tomaría el 10% de los datos de entrenamiento para calcular algunas metricas con el fin de
+                        calcular el valor de la función de perdida y el accuracy por cada epoca de entrenamiento y a partir de esta información guardar el modelo que
+                        ofreciera los mejores resultados y un subconjunto de prueba con el cual se evaluaría la eficacia del modelo. También se determinaron varias metricas que serían utilizadas con el fin
+                        de a partir de ellas escoger el modelo final que se utilizaría. Las metricas que se tuvieron en cuenta para la medición del desempeño del modelo de clasificación fueron:
+                      </p>
+                      <ul>
+                        <li>Accuracy - sobre los datos de validación</li>
+                        <li>F1 Score</li>
+                        <li>Recall</li>
+                        <li>Precision</li>
+                        <li>Matriz de confusión</li>
+                        <li>AUC (Area Under the Curve) - Esta metrica se calculo aplicando una estrategia de tipo OvR </li>
+                      </ul>
+
+                      <p style={{textAlign: "justify"}}>
+                        El modelo finalmente escogido lo fue debido a su superior desempeño con respecto a los otros con los que se le comparo. Los resultados que este demostro en las distintas metricas fueron:
+                      </p>
+                      <ul>
+                        <li>F1 Score: <strong>0.77</strong></li>
+                        <li>Recall: <strong>0.77</strong></li>
+                        <li>Precision <strong>0.8</strong></li>
+                        <li className="mb-3">
+                          <Row>
+                            <Col>
+                              Matriz de confusión
+                            </Col>
+                            <Row className="justify-content-left">
+                              <img src={"/images/conf_matrix.png"} alt={"Matriz de confusión"} style={{ height: "188px", width: "560px" }} />
+                            </Row>
+                          </Row>
+                        </li>
+                      </ul>
+                      <p className="fs-3 fw-bold text-center" style={{textAlign: "justify"}}>Configuración del modelo escogido</p>
+                      <p>El modelo escogido fue entrenado durante 2000 epocas. Tomando aproximadamente 45 minutos el entrenamiento del mismo, 
+                        se utilizo una estructura de capas en la red neuronal que se devidia en 3 etapas. Una para el pre procesamiento y aumentado, otra para la convolución
+                        y una última de clasificación. Para la ejecución del modelo se hizo uso de la libreria tensorflow y keras. El optimizador utilizado para el entrenamiento fue Adam y
+                        la función de perdida utilizada fue &quot;Sparse categorical crossentropy&quot;.
                       </p>
                     </Col>
                   </Row>

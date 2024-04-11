@@ -8,13 +8,13 @@ interface params {
 
 export const ListItemWithImage = ({ label, imageSrc , alt}: params) => {
     return (
-        <li className="my-3">
-            <Row>
+        <li className="mb-3">
+            <Row className="text-center">
                 <Col className="fw-bold my-2">
                     {label}
                 </Col>
                 <Row className="justify-content-center">
-                    <img src={imageSrc} alt="Imagen de carcinoma de celulas grandes" style={{height: "250px", width: "250px"}}/>
+                    <img src={imageSrc} alt={alt} style={{height: "250px", width: "250px"}}/>
                 </Row>
             </Row>
         </li>

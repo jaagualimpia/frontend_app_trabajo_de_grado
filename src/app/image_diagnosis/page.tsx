@@ -5,6 +5,7 @@ import NavBar from "../components/navbar/NavBar"
 import { useEffect, useState } from "react";
 import { post_diagnosis } from "@/services/diagnosis.service";
 import { useRouter } from "next/navigation";
+import { LoaderComponent } from "../components/loaderComponent/loaderComponent";
 
 interface imageDiagnosisProps {
   patientName: string,
@@ -19,6 +20,8 @@ export default function ImageDiagnosis() {
     patientAge: '',
     imageUrl: '',
   });
+  const [isLoading, setIsLoading] = useState(false)
+
   const router = useRouter();
 
   useEffect(() => {
@@ -47,6 +50,8 @@ export default function ImageDiagnosis() {
     console.log(formData);
     event.preventDefault();
     
+    setIsLoading(true)
+
     await post_diagnosis(formData).then((response) => {
       router.push('/results/' + response.id);
     })
@@ -88,9 +93,6 @@ export default function ImageDiagnosis() {
     <>
       <NavBar />
 
-      {
-
-      }
       <Container fluid className="mt-2">
         <Row className="text-center">
           <p className="fs-2 fw-bold">Ingresa los datos</p>
@@ -158,6 +160,7 @@ export default function ImageDiagnosis() {
               </Container>
             </Form>
           </Container>
+          {isLoading && (<LoaderComponent />)}
         </Row>
 
       </Container>

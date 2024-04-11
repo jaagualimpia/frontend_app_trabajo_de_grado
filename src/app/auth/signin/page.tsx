@@ -1,25 +1,28 @@
 "use client"
 
+import { LoaderComponent } from "@/app/components/loaderComponent/loaderComponent";
 import { authenticateUser } from "@/services/auth.service";
 import Link from "next/link"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap"
+import { showSnackbarErrorMessage } from "./errors/errors.messages";
 
 export default function SignIn() {
   const router = useRouter();
-
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     password: '',
     email: '',
   });
+  const [errorSnackbar, setErrorSnackbar] = useState<any>(null)
 
   const cardStyle = {
     backgroundColor: "#1E1E1E"
   }
 
   useEffect(() => {
-    document.title = "Sign in"; // Cambia el título de la ventana del navegador
+    document.title = "Sign in";
   }, [])
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,16 +36,33 @@ export default function SignIn() {
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    setIsLoading(true)
+    
     await authenticateUser(
       {
-
+        
         email: formData.email,
         password: formData.password
 
       }).then((response) => {
+
         localStorage.setItem('access_token', response.access);
         router.push('/');
-      })
+
+      }).catch(error => {
+
+        setIsLoading(false)
+        setErrorSnackbar(showSnackbarErrorMessage(error))
+        setTimeout(() => {setErrorSnackbar(null)}, 3000)
+
+      }).catch(error => {
+
+        setIsLoading(false)
+        setErrorSnackbar(showSnackbarErrorMessage(error))
+        setTimeout(() => {setErrorSnackbar(null)}, 3000)
+
+      }) 
+
   }
 
   return (
@@ -90,6 +110,8 @@ export default function SignIn() {
           </Card>
         </Col>
       </Row>
+      {isLoading && (<LoaderComponent />)}
+      {errorSnackbar}
     </Container>
   )
 }
