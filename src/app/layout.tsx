@@ -20,7 +20,7 @@ export default function RootLayout({
       const response = await isSessionActive()
 
       if (!response) {
-        router.push('/auth/signin')
+        // router.push('/auth/signin')
       }
     }
 
