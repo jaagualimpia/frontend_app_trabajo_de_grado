@@ -8,3 +8,8 @@
     margin-top: 1.5em;
     width: 75%;
 }
+
+.basic-button:hover{
+    background-color: #4A6FFA;
+    transition-duration: 0.25s;
+}
