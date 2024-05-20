@@ -6,7 +6,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <meta property="og:title" content="Title Here" />
             <style jsx global>{`
                 body {
-                    background-color: #0F0F0F;
+                    background-color: #F4F8FF;
                     color: white;
                 }
             `}</style>

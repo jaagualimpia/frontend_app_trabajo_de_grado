@@ -1,0 +1,10 @@
+.basic-button{
+    border-style: none;
+    background-color: #5A81FA;
+    color: white;
+    border-radius: 25px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-top: 1.5em;
+    width: 75%;
+}

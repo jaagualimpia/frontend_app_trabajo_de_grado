@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap"
 import { showSnackbarErrorMessage } from "./errors/errors.messages";
+import { BasicButton } from "@/app/components/basicButton/BasicButton";
 
 export default function SignIn() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function SignIn() {
   const [errorSnackbar, setErrorSnackbar] = useState<any>(null)
 
   const cardStyle = {
-    backgroundColor: "#1E1E1E"
+    backgroundColor: "#E8EEFA"
   }
 
   useEffect(() => {
@@ -37,10 +38,10 @@ export default function SignIn() {
     event.preventDefault();
 
     setIsLoading(true)
-    
+
     await authenticateUser(
       {
-        
+
         email: formData.email,
         password: formData.password
 
@@ -53,15 +54,15 @@ export default function SignIn() {
 
         setIsLoading(false)
         setErrorSnackbar(showSnackbarErrorMessage(error))
-        setTimeout(() => {setErrorSnackbar(null)}, 3000)
+        setTimeout(() => { setErrorSnackbar(null) }, 3000)
 
       }).catch(error => {
 
         setIsLoading(false)
         setErrorSnackbar(showSnackbarErrorMessage(error))
-        setTimeout(() => {setErrorSnackbar(null)}, 3000)
+        setTimeout(() => { setErrorSnackbar(null) }, 3000)
 
-      }) 
+      })
 
   }
 
@@ -75,7 +76,7 @@ export default function SignIn() {
               <Container fluid>
                 <Row className="text-center">
                   <Col>
-                    <p className="text-white fs-1 fw-bolder">Iniciar sesión en SupportCCT</p>
+                    <p className="fs-1 fw-bolder" style={{ "color": "#2B308B" }}>Iniciar sesión en SupportCCT</p>
                   </Col>
                 </Row>
 
@@ -83,16 +84,20 @@ export default function SignIn() {
                   <Col className="text-start">
                     <Form onSubmit={handleSubmit}>
                       <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-                        <Form.Label className="text-white fw-bold">Correo electronico</Form.Label>
+                        <Form.Label className="fw-bold" style={{ "color": "#2B308B" }}>Correo electronico</Form.Label>
                         <Form.Control type="email" name="email" placeholder="Ingresa tu email" onChange={handleOnChange} />
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label className="text-white fw-bold">Contraseña</Form.Label>
+                        <Form.Label className="fw-bold" style={{ "color": "#2B308B" }}>Contraseña</Form.Label>
                         <Form.Control type="password" name="password" placeholder="Ingresa tu contraseña" onChange={handleOnChange} />
                       </Form.Group>
 
-                      <button className="btn btn-success w-100 mt-2 fw-bold">Ingresar</button>
+                      {/* <button style={{ "color": "#FFFFF" }} className="btn btn-success w-100 mt-2 fw-bold">Ingresar</button> */}
+
+                      <Row className="text-center">
+                        <BasicButton text="Ingresar" />
+                      </Row>
                     </Form>
                   </Col>
                 </Row>
@@ -105,7 +110,7 @@ export default function SignIn() {
         <Col className="mx-5">
           <Card style={cardStyle} className="mx-5 py-3">
             <Card.Body>
-              <Link className="fs-2 fw-bold link-opacity-75" href={"/auth/signup"}>¿No tienes una cuenta? crea una</Link>
+              <Link style={{"color": "#2B308B"}} className="fs-2 fw-bold link-opacity-75" href={"/auth/signup"}>¿No tienes una cuenta? crea una</Link>
             </Card.Body>
           </Card>
         </Col>

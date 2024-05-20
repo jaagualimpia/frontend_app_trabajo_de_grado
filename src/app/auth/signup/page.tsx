@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap"
 import { showSignUpSnackbarErrorMessage } from "./errors/errors.messages";
+import { BasicButton } from "@/app/components/basicButton/BasicButton";
 
 
 export default function SignUp() {
@@ -20,7 +21,7 @@ export default function SignUp() {
   const [errorSnackbar, setErrorSnackbar] = useState<any>(null)
 
   const cardStyle = {
-    backgroundColor: "#1E1E1E"
+    backgroundColor: "#E8EEFA"
   }
 
   useEffect(() => {
@@ -42,9 +43,9 @@ export default function SignUp() {
       alert('Las contraseñas no coinciden');
       return;
     }
-    
+
     setIsLoading(true)
-    
+
     await createUser(formData).then(async (response) => {
 
 
@@ -70,59 +71,63 @@ export default function SignUp() {
       setIsLoading(false)
       setTimeout(() => { setErrorSnackbar(null) }, 3000)
     });
-};
+  };
 
-return (
-  <>
-    <Container>
-      <Row>
-        <Col className="mt-5">
-          <Card style={cardStyle} className="mx-4">
+  return (
+    <>
+      <Container>
+        <Row>
+          <Col className="mt-5">
+            <Card style={cardStyle} className="mx-4">
 
-            <Card.Body>
-              <Container fluid>
-                <Row className="text-center">
-                  <Col>
-                    <p className="text-white h1">Crea una cuenta en SupportCCT</p>
-                  </Col>
-                </Row>
+              <Card.Body>
+                <Container fluid>
+                  <Row className="text-center">
+                    <Col>
+                      <p className="h1 fw-bold" style={{ "color": "#2B308B" }}>Crea una cuenta en SupportCCT</p>
+                    </Col>
+                  </Row>
 
-                <Row>
-                  <Col className="text-start">
-                    <Form onSubmit={handleSubmit}>
-                      <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-                        <Form.Label className="text-white">Correo electronico</Form.Label>
-                        <Form.Control type="email" onChange={handleInputChange} placeholder="Ingresa tu email" name="email" />
-                      </Form.Group>
+                  <Row>
+                    <Col className="text-start">
+                      <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
+                          <Form.Label className="fw-bold" style={{ "color": "#2B308B" }} >Correo electronico</Form.Label>
+                          <Form.Control type="email" onChange={handleInputChange} placeholder="Ingresa tu email" name="email" />
+                        </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="formBasicUsername">
-                        <Form.Label className="text-white">Nombre de usuario</Form.Label>
-                        <Form.Control type="text" onChange={handleInputChange} placeholder="Ingresa tu nombre de usuario" name="username" />
-                      </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicUsername">
+                          <Form.Label className="fw-bold" style={{ "color": "#2B308B" }} >Nombre de usuario</Form.Label>
+                          <Form.Control type="text" onChange={handleInputChange} placeholder="Ingresa tu nombre de usuario" name="username" />
+                        </Form.Group>
 
-                      <Form.Group className="mb-4" controlId="formBasicPassword">
-                        <Form.Label className="text-white">Confirma tu contraseña</Form.Label>
-                        <Form.Control type="password" onChange={handleInputChange} placeholder="Confirma tu contraseña" name="password" />
-                      </Form.Group>
+                        <Form.Group className="mb-4" controlId="formBasicPassword">
+                          <Form.Label className="fw-bold" style={{ "color": "#2B308B" }} >Digita tu contraseña</Form.Label>
+                          <Form.Control type="password" onChange={handleInputChange} placeholder="Ingresa tu contraseña" name="password" />
+                        </Form.Group>
 
-                      <Form.Group className="mb-4" controlId="formBasicConfirmPassword">
-                        <Form.Label className="text-white">Confirma tu contraseña</Form.Label>
-                        <Form.Control type="password" onChange={handleInputChange} placeholder="Confirma tu contraseña" name="confirmPassword" />
-                      </Form.Group>
+                        <Form.Group className="mb-4" controlId="formBasicConfirmPassword">
+                          <Form.Label className="fw-bold" style={{ "color": "#2B308B" }} >Confirma tu contraseña</Form.Label>
+                          <Form.Control type="password" onChange={handleInputChange} placeholder="Confirma tu contraseña" name="confirmPassword" />
+                        </Form.Group>
 
-                      <button className="btn btn-success w-100 mt-2"><strong>Crear cuenta</strong></button>
-                    </Form>
-                  </Col>
-                </Row>
-              </Container>
+                        {/* <button className="btn btn-success w-100 mt-2"><strong>Crear cuenta</strong></button> */}
 
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-    {isLoading && (<LoaderComponent />)}
-    {errorSnackbar}
-  </>
-)
+                        <Row className="text-center">
+                          <BasicButton text="Crear cuenta" />
+                        </Row>
+                      </Form>
+                    </Col>
+                  </Row>
+                </Container>
+
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      {isLoading && (<LoaderComponent />)}
+      {errorSnackbar}
+    </>
+  )
 }
