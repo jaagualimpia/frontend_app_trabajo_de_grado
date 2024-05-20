@@ -1,8 +1,0 @@
-version: "3.2"
-services:
-  web:
-    image: jaagualimpiac/tra_grado_frontend:latest
-    ports:
-      - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_API_URL=https://supportcct-backend.azurewebsites.net
