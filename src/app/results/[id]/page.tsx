@@ -6,14 +6,14 @@ import { getDiagnosisDetail } from "@/services/diagnosis.service"
 import { useEffect, useState } from "react"
 import { Container, Row, Col, Card } from "react-bootstrap"
 
-const preparedMessages: {[key: string]: string} = {
+const preparedMessages: { [key: string]: string } = {
     "normal": "El paciente no parece presentar ninguna anomalía en los pulmones, pese a lo dicho se recomienda encarecidamente realizar exámenes más exhaustivos para descartar cualquier posibilidad de enfermedad.",
     "large cell carcinoma": "El carcinoma de celulas grande es un tumor maligno dificil de combatir, sin embargo la medicina moderna ha encontrado formas de hacerle frente de manera parcialmente efectiva. Los tratamientos más comunes con la quimioterapia y la cirugía que busque extirpar el tumor y en algunos casos incluso todo el pulmon afectado.",
     "adenocarcinoma": "El adenocarcinoma pulmonar es una enfermedad que comunmente se suele tratar con cirugía, esto hasta la etapa IIIA, posterior a esta etapa las opciones de tratamiento se reducen a la quimioterapia y la radioterapia. Es un cáncer que posee una alta probabilidad de recaída y exige una atención inmediata para aumentar la efectividad del tratamiento. Es el tipo de cáncer de púlmon más comun que existe",
     "squamous cell carcinoma": "Es un tipo de cáncer de pulmón no microcítico, cuyas células se asemejan a las células planas (llamadas células escamosas) que revisten las vías respiratorias, sin tratar puede destruir el tejido sano cercano. Puede extenderse a los ganglios linfáticos o a otros órganos y puede ser mortal, aunque no es frecuente."
 }
 
-const preparedMessagesTitles: {[key: string]: string} = {
+const preparedMessagesTitles: { [key: string]: string } = {
     "normal": "Pulmones sanos",
     "large cell carcinoma": "Se estima la presencia de carcinoma de células grandes",
     "adenocarcinoma": "Se estima la presencia de adenocarcinoma",
@@ -26,7 +26,7 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
     const [message, setMessage] = useState("Cargando...")
 
     useEffect(() => {
-        const fetchDiagnosisDetail = async ()=>{
+        const fetchDiagnosisDetail = async () => {
             await getDiagnosisDetail(parseInt(id)).then((diagnosisDetail) => {
                 const originalDiagnosisResult = diagnosisDetail.diagnosisResult
                 diagnosisDetail.diagnosisResult = preparedMessagesTitles[diagnosisDetail.diagnosisResult]
@@ -34,11 +34,11 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
                 setMessage(preparedMessages[originalDiagnosisResult])
             })
         }
-        
+
         fetchDiagnosisDetail()
     }, [])
 
-    
+
 
 
     return (
@@ -47,6 +47,26 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
                 <Row>
                     <Col className="mx-5">
                         <Card className="mx-5">
+                            <Card.Header>
+                                <Container>
+                                    <Row className="my-0">
+                                        <Col className="text-start">
+                                            <p className="fs-1 fw-bold">Nombre</p>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col className="text-start">
+                                            <p className="fs-3 fw-bold">Edad</p>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col className="text-start">
+                                            <p className="fs-3 fw-bold">Atendido por el profesional: </p>
+                                        </Col>
+                                    </Row>
+                                </Container>
+
+                            </Card.Header>
                             <Card.Body>
                                 <Container className="lh-sm">
                                     <Row className="my-0">
@@ -86,7 +106,7 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
                                     <Row className="my-0">
                                         <Col className="text-center">
                                             <p className="fs-4 fw-bolder text-black" >
-                                            Se recuerda que la presente herramienta sirve únicamente al profesional de la salud como un apoyo y está impulsado por medio de inteligencia artificial y es propenso a cometer errores. Se recomiendan exámenes más exhaustivos independientemente de los resultados obtenidos                                            </p>
+                                                Se recuerda que la presente herramienta sirve únicamente al profesional de la salud como un apoyo y está impulsado por medio de inteligencia artificial y es propenso a cometer errores. Se recomiendan exámenes más exhaustivos independientemente de los resultados obtenidos                                            </p>
                                         </Col>
                                     </Row>
                                 </Container>
