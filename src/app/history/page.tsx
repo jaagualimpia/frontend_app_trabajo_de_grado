@@ -102,8 +102,8 @@ export default function History() {
         nonActiveData ? <AlternativeHistoryComponent /> : (
           <Container className="my-3 h-100">
             <Row className="h-100">
-              <Col className="my-1 h-100">
-                <Card className="h-100" style={{ height: "100%" }}>
+              <Col className="col-4 my-1 h-100" >
+                <Card className="h-100" style={{ height: "100%", minHeight: "30rem", backgroundColor: "#E8EEFA", minWidth: "25rem"}}>
                   <Card.Body>
                     {itemsToDisplay}
                   </Card.Body>

@@ -7,6 +7,7 @@
     padding-bottom: 0.5em;
     margin-top: 1.5em;
     width: 75%;
+    cursor: pointer;
 }
 
 .basic-button:hover{

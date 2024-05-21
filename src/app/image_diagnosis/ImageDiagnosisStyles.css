@@ -1,0 +1,39 @@
+.radius-button-custom {
+    border-radius: 20px;
+    background-color: #3f51b5;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    text-transform: none;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+}
+
+.radius-button-custom:hover {
+    background-color: #303f9f;
+}   
+
+.radius-button-custom-outlined {
+    border-radius: 20px;
+    border: 1px solid #3f51b5;
+    color: #3f51b5;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    text-transform: none;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+}
+
+.radius-button-custom-outlined:hover {
+    background-color: #949bc2;
+    color: white;
+    border-color: #949bc2;
+}
+
+.limiter {
+    min-width: 700px;
+}

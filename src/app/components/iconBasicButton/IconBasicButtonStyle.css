@@ -1,0 +1,26 @@
+.icon-basic-button{
+    border-style: none;
+    background-color: #5A81FA;
+    color: white;
+    margin-top: 1.5em;
+    width: 75%;
+    border-radius: 10px;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.icon-basic-button:hover{
+    background-color: #4A6FFA;
+    transition-duration: 0.25s;
+}
+
+.icon {
+    margin-right: 10px;
+    width: 75px; /* Ajusta el tamaño del ícono según sea necesario */
+    height: 75px;
+}

@@ -26,16 +26,19 @@ export const DiagnosisCardComponent = (
 
                         <Row className="mt-2">
                             <Col>
-                                <p className="fs-4 fw-bold mb-1 lh-sm">Nombre: {name}</p>
-                                <p className="fs-5 mb-1 lh-sm">Edad: {calculateAge(patient_date_of_birth)}</p>
-                                <p className="fs-5 mb-1 lh-sm">Fecha:  {formatDate(diagnosis_date)}</p>
-                                <p className="fs-5 mb-1 lh-sm">Numero de referencia: {id}</p>
-                                <p className="fs-4 fw-bold mb-1 text-center lh-sm">{diagnosis_result}</p>
+                                <p className="fs-4 fw-bold mb-1 lh-sm" style={{ "color": "#2B308B" }}>Nombre: {name}</p>
+                                <p className="fs-5 mb-1 lh-sm" style={{ "color": "#2B308B" }}>Edad: {calculateAge(patient_date_of_birth)}</p>
+                                <p className="fs-5 mb-1 lh-sm" style={{ "color": "#2B308B" }}>Fecha:  {formatDate(diagnosis_date)}</p>
+                                <p className="fs-5 mb-1 lh-sm" style={{ "color": "#2B308B" }}>Numero de referencia: {id}</p>
+
+                                <Container fluid style={{"borderRadius": "12px", backgroundColor: "#E8EEFA"}} className="mt-5 py-2">
+                                    <p className="fs-4 fw-bold mb-1 text-center lh-sm" style={{ "color": "#2B308B" }}>{diagnosis_result}</p>
+                                </Container>
                             </Col>
                         </Row>
                     </Container>
                 </Card.Body>
             </Card>
         </>
-        )
+    )
 }

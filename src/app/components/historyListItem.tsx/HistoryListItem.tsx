@@ -19,24 +19,23 @@ export default function HistoryListItem({ date, patientName, patientAge, diagnos
 
     return (
         <>
-            <Container fluid className="lh-1" onClick={OnClick} style={{cursor: "pointer"}}>
+            <Container fluid className="lh-1 my-3" onClick={OnClick} style={{cursor: "pointer", backgroundColor: "white", borderRadius: "12px", padding: "7px 0px 10px 5px"}}>
                 <Row>
                     <Col>
-                        <p className="fs-3 fw-bold mb-1">Fecha: {formatDate(date)}</p>
+                        <p className="fs-3 fw-bold mb-1" style={{color: "#2B308B"}}>Fecha: {formatDate(date)}</p>
 
                     </Col>
                 </Row>
                 <Row className="py-0">
                     <Col>
-                        <p className="fs-6 mb-2">Paciente: {patientName} - {calculateAge(patientAge)} años</p>
+                        <p className="fs-6 mb-2" style={{color: "#2B308B"}}>Paciente: {patientName} - {calculateAge(patientAge)} años</p>
                     </Col>
                 </Row>
                 <Row className="py-0">
                     <Col className="mb-0">
-                        <p className="fs-6 mb-0">Diagnostico: {diagnosis}</p>
+                        <p className="fs-6 mb-0" style={{color: "#2B308B"}}>Diagnostico: {diagnosis}</p>
                     </Col>
                 </Row>
-                {isLast ? <></> : <hr/>}
             </Container>
         </>
     )
