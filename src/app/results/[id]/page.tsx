@@ -46,30 +46,23 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
             <Container className="my-5 ">
                 <Row>
                     <Col className="mx-5">
-                        <Card className="mx-5">
-                            <Card.Header>
-                                <Container>
-                                    <Row className="my-0">
-                                        <Col className="text-start">
-                                            <p className="fs-1 fw-bold">Nombre</p>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col className="text-start">
-                                            <p className="fs-3 fw-bold">Edad</p>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col className="text-start">
-                                            <p className="fs-3 fw-bold">Atendido por el profesional: </p>
-                                        </Col>
-                                    </Row>
+                        <Card className="mx-5" style={{minWidth: "30em"}}>
+                            <Card.Header style={{"backgroundColor": "#E8EEFA"}}>
+                                <Container style={{"color": "#2B308B"}}>
+                                    <div className="">
+
+                                        <p className="fs-1 fw-bold">{diagnosisDetailData?.patientName}</p>
+                                        <p className="fs-5" style={{fontWeight: "500"}}>{calculateAge(diagnosisDetailData?.patientDateOfBirth)} años <br />
+                                        Atendido por el profesional: {diagnosisDetailData?.username} <br />
+                                        {exactDateFormatter(diagnosisDetailData?.diagnosisDate)}
+                                        </p>
+                                    </div>
                                 </Container>
 
                             </Card.Header>
                             <Card.Body>
                                 <Container className="lh-sm">
-                                    <Row className="my-0">
+                                    {/* <Row className="my-0">
                                         <Col className="text-center">
                                             <p className="fs-1 fw-bold">{diagnosisDetailData?.patientName}</p>
                                         </Col>
@@ -88,24 +81,24 @@ export default function ResultsDiagnosisIdPage({ params }: { params: { id: strin
                                         <Col className="text-center">
                                             <p className="fs-4 fw-medium" style={{ "color": "#6D6D6D" }}>{exactDateFormatter(diagnosisDetailData?.diagnosisDate)}</p>
                                         </Col>
-                                    </Row>
+                                    </Row> */}
 
-                                    <Row className="text-center lh-base">
-                                        <Col className="col-4">
-                                            <p className="fs-4 fw-bolder">
-                                                {diagnosisDetailData?.diagnosisResult}
-                                            </p>
-                                        </Col>
-                                        <Col className="col-8">
-                                            <p className="fs-5 fw-medium">
+                                    <Row className=" lh-base my-3 mx-3">
+                                        <Col className="col-8" >
+                                            <p className="fs-5 fw-medium" style={{color: "#2B308B", opacity: "70%"}}>
                                                 {message}
                                             </p>
                                         </Col>
+                                        <Col className="col-4 d-flex align-items-center justify-content-center" style={{backgroundColor: "#DEDFF9", borderRadius:"12px"}}>
+                                            <p className="fs-4 fw-bolder text-center" style={{color: "#2B308B"}}>
+                                                {diagnosisDetailData?.diagnosisResult}
+                                            </p>
+                                        </Col>
                                     </Row>
 
-                                    <Row className="my-0">
-                                        <Col className="text-center">
-                                            <p className="fs-4 fw-bolder text-black" >
+                                    <Row className="mx-3 mt-5">
+                                        <Col className="text-center d-flex align-items-center justify-content-center py-4" style={{backgroundColor: "#DEDFF9", borderRadius:"12px"}}>
+                                            <p className="fs-5 mx-3" style={{color: "#2B308B", fontWeight: "600"}}>
                                                 Se recuerda que la presente herramienta sirve únicamente al profesional de la salud como un apoyo y está impulsado por medio de inteligencia artificial y es propenso a cometer errores. Se recomiendan exámenes más exhaustivos independientemente de los resultados obtenidos                                            </p>
                                         </Col>
                                     </Row>
