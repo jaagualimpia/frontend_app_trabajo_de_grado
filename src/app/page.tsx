@@ -1,7 +1,6 @@
 "use client"
 
 
-import "./homeCss.css"
 
 import { Card, Col, Container, Row } from "react-bootstrap";
 import NavBar from "./components/navbar/NavBar";
@@ -10,9 +9,11 @@ import { useEffect } from "react";
 import { ListItemWithImage } from "./components/listItemWithImage/ListItemWithImage";
 import { IconBasicButton } from "./components/iconBasicButton/IconBasicButton";
 import Image from "next/image";
+import styles from "./home.module.css"
 
 export default function Home() {
   const router = useRouter()
+ 
 
   useEffect(() => {
     document.title = "Inicio"
@@ -27,9 +28,9 @@ export default function Home() {
           <img className="principal-image" src="/images/doctor-checking-tomography-front-view.jpg" alt="Home Image" height={"350"} />
         </div> */}
 
-        <div className="contenedor">
+        <div style={{"position": "relative"}}>
           <Image className="w-100" src="/images/doctor-checking-tomography-front-view.jpg" alt="Snow" width={1000} height={350} />
-          <p className="centrao fs-1">SupportCCT</p>
+          <p className={styles.centrao} >SupportCCT</p>
         </div>
 
 
